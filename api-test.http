@@ -1,0 +1,27 @@
+### POST - Users
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "João Silva",
+  "username": "admin1234",
+  "email": "teste2.mail@senac.edu.br",
+  "password": "senha123"
+}
+
+### GET - Listar Users
+GET http://localhost:3000/users
+
+### PUT - Editar Users
+PUT http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+  "name": "João Silva Atualizado",
+  "username": "Desenvolvedor Sênior",
+  "email": "teste3.mail@senac.edu.br",
+  "password": "senha456"
+}
+
+### DELETE - Remover User
+DELETE http://localhost:3000/users/1
