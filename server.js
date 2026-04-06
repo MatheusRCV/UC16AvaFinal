@@ -57,7 +57,7 @@ app.get('/users', (req, res) => {
     res.json(sanitized);
 });
 
-// Atualizar cadastro
+// Atualizar Usuário
 app.put('/users/:id', (req, res) => {
     const users = readJSON(USERS_FILE);
     const { id } = req.params;
@@ -68,14 +68,6 @@ app.put('/users/:id', (req, res) => {
     const usersIndex = users.findIndex(u => u.id == id);
     if (usersIndex === -1) {
         return res.status(404).json({ error: 'Usuário não encontrado.' });
-    }
-
-    // Pesquisa de nome e e-mail já existente.
-    if (users.find (u => u.username === username)) {
-        return res.status(400).json({ error: 'O nome de Usuário já está em uso.'})
-    }
-    if (users.find (u => u.email === email)) {
-        return res.status(400).json({ error: 'O endereço de E-mail já está em uso.'})
     }
 
     // Condicionais que evitam valores inválidos nos campos da database.
@@ -92,6 +84,14 @@ app.put('/users/:id', (req, res) => {
         return res.status(400).json({ error: "Senha não pode conter menos que 6 caracteres." });
     }
 
+    // Pesquisa de nome e e-mail já existente.
+    if (username !== undefined && users.find(u => u.username === username && u.id != id)) {
+    return res.status(400).json({ error: 'O nome de Usuário já está em uso.' });
+    }
+    if (email !== undefined && users.find (u => u.email === email && u.id != id)) {
+        return res.status(400).json({ error: 'O endereço de E-mail já está em uso.'})
+    }
+
     // Condicionais que evitam que Undefined seja armazenado em Updates.
     if (name !== undefined) updates.name = name;
     if (username !== undefined) updates.username = username;
@@ -104,7 +104,7 @@ app.put('/users/:id', (req, res) => {
     res.json({ message: 'Usuário atualizado com sucesso.' });
 });
 
-// Deletar cadastro
+// Deletar Usuário
 app.delete('/users/:id', (req, res) => {
     const users = readJSON(USERS_FILE);
     const { id } = req.params;
@@ -144,12 +144,76 @@ app.post('/posts', (req, res) => {
 
 // *******************************************************************************
 // Listar Posts
+app.get('/posts', (req, res) => {
+    const posts = readJSON(POSTS_FILE);
+    const sanitized = posts.map(p => ({id: p.id, title: p.title, theme: p.theme, content: p.content, user_id: p.user_id}));
+
+    const users = readJSON(USERS_FILE);
+    const postsWithUsernames = sanitized.map(post => {
+        const user = users.find(u => u.id == post.user_id);
+        return { ...post, username: user ? user.username : 'Usuário Desconhecido' };
+    });
+
+    res.json(postsWithUsernames);
+});
 
 // *******************************************************************************
 // Editar Post
+app.put('/posts/:id', (req, res) => {
+    const posts = readJSON(POSTS_FILE);
+    const { id } = req.params;
+    const { title, theme, content } = req.body;
+    const updates = {};
+    
+    // Criação do Index para pesquisar a Postagem.
+    const postsIndex = posts.findIndex(p => p.id == id);
+    if (postsIndex === -1) {
+        return res.status(404).json({ error: 'Post não encontrado.' });
+    }
+    
+    // Condicionais que evitam valores inválidos nos campos da database.
+    if (title !== undefined && title === "") {
+        return res.status(400).json({ error: "Título não pode ser vazio" });
+    }
+    if (theme !== undefined && theme === "") {
+        return res.status(400).json({ error: "Tema não pode ser vazio" });
+    }
+    if (content !== undefined && content === "") {
+        return res.status(400).json({ error: "Conteúdo não pode ser vazio" });
+    }
+    
+    // Pesquisa de Title já existente.
+    if (title !== undefined && posts.find(p => p.title === title && p.id != id)) {
+        return res.status(400).json({ error: 'O título já está em uso.' });
+    }
+    
+    // Condicionais que evitam que Undefined seja armazenado em Updates.
+    if (title !== undefined) updates.title = title;
+    if (theme !== undefined) updates.theme = theme;
+    if (content !== undefined) updates.content = content;
+
+    // Aplicação automatizada do filtro nos espaços da database, aplicando somente o que foi alterado.
+    posts[postsIndex] = { ...posts[postsIndex], ...updates };
+    writeJSON(POSTS_FILE, posts);
+    res.json({ message: 'Post atualizado com sucesso.' });
+});
 
 // *******************************************************************************
 // Deletar Posts
+app.delete('/posts/:id', (req, res) => {
+    const posts = readJSON(POSTS_FILE);
+    const { id } = req.params;
+
+    const index = posts.findIndex(p => p.id == id);
+    if (index === -1) {
+        return res.status(404).json({ error: 'Post não encontrado.' });
+    }
+
+    posts.splice(index, 1);
+    writeJSON(POSTS_FILE, posts);
+
+    res.json({message: "Post deletado com sucesso."});
+});
 
 // *******************************************************************************
 // Comments CRUD
