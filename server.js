@@ -128,6 +128,27 @@ app.post('/posts', (req, res) => {
         return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
     }
 
+    // Condicionais que evitam valores inválidos nos campos da database.
+    if (title !== undefined && title === "") {
+        return res.status(400).json({ error: "Título não pode ser vazio" });
+    }
+    if (theme !== undefined && theme === "") {
+        return res.status(400).json({ error: "Tema não pode ser vazio" });
+    }
+    if (content !== undefined && content === "") {
+        return res.status(400).json({ error: "Conteúdo não pode ser vazio" });
+    }
+    
+    // Pesquisa de Title já existente.
+    if (title !== undefined && posts.find(p => p.title === title && p.id != id)) {
+        return res.status(400).json({ error: 'O título já está em uso.' });
+    }
+    
+    // Condicionais que evitam que Undefined seja armazenado em Updates.
+    if (title !== undefined) updates.title = title;
+    if (theme !== undefined) updates.theme = theme;
+    if (content !== undefined) updates.content = content;
+
     const users = readJSON(USERS_FILE);
     const userId = parseInt(user_id);
     if (!users.some(u => u.id == userId)) {
@@ -218,6 +239,33 @@ app.delete('/posts/:id', (req, res) => {
 // *******************************************************************************
 // Comments CRUD
 // Criar Comment
+app.post('/comments', (req, res) => {
+    const { commentContent, user_id, post_id } = req.body;
+    if (!commentContent || !user_id || !post_id) {
+        return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
+    }
+
+    const comments = readJSON(COMMENTS_FILE);
+
+
+    const users = readJSON(USERS_FILE);
+    const userId = parseInt(user_id);
+    if (!users.some(u => u.id == userId)) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    const posts = readJSON(POSTS_FILE);
+    const postId = parseInt(post_id);
+    if (!posts.some(p => p.id == postId)) {
+        return res.status(404).json({ error: 'Post não encontrado' });
+    }
+
+    const newComment = { id: randomID(comments), commentContent, user_id: userId, post_id: postId };
+
+    comments.push(newComment);
+    writeJSON(COMMENTS_FILE, comments);
+    res.status(201).json({message: `Seu comentário foi criado com sucesso!`, comment: newComment});
+});
 
 // *******************************************************************************
 // Listar Comments
