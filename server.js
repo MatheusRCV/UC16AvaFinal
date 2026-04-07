@@ -284,9 +284,48 @@ app.get('/comments', (req, res) => {
 
 // *******************************************************************************
 // Editar Comment
+app.put('/comments/:id', (req, res) => {
+    const comments = readJSON(COMMENTS_FILE);
+    const { id } = req.params;
+    const { commentContent } = req.body;
+    const updates = {};
+
+    // Criação do Index para pesquisar o Comentário.
+    const commentsIndex = comments.findIndex(c => c.id == id);
+    if (commentsIndex === -1) {
+        return res.status(404).json({ error: 'Comentário não encontrado.' });
+    }
+
+    // Condicionais que evitam valores inválidos nos campos da database.
+    if (commentContent !== undefined && commentContent === "") {
+        return res.status(400).json({ error: "Conteúdo não pode ser vazio" });
+    }
+
+    // Condicionais que evitam que Undefined seja armazenado em Updates.
+    if (commentContent !== undefined) updates.commentContent = commentContent;
+
+    // Aplicação automatizada do filtro nos espaços da database, aplicando somente o que foi alterado.
+    comments[commentsIndex] = { ...comments[commentsIndex], ...updates };
+    writeJSON(COMMENTS_FILE, comments);
+    res.json({ message: 'Comentário atualizado com sucesso.' });
+});
 
 // *******************************************************************************
 // Deletar Comments
+app.delete('/comments/:id', (req, res) => {
+    const commentContent = readJSON(COMMENTS_FILE);
+    const { id } = req.params;
+
+    const index = commentContent.findIndex(c => c.id == id);
+    if (index === -1) {
+        return res.status(404).json({ error: 'Comentário não encontrado.' });
+    }
+
+    commentContent.splice(index, 1);
+    writeJSON(COMMENTS_FILE, commentContent);
+
+    res.json({message: "Comentário deletado com sucesso."});
+});
 
 // *******************************************************************************
 app.listen(PORT, () => {
