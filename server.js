@@ -240,13 +240,11 @@ app.delete('/posts/:id', (req, res) => {
 // Comments CRUD
 // Criar Comment
 app.post('/comments', (req, res) => {
+    const comments = readJSON(COMMENTS_FILE);
     const { commentContent, user_id, post_id } = req.body;
     if (!commentContent || !user_id || !post_id) {
         return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
     }
-
-    const comments = readJSON(COMMENTS_FILE);
-
 
     const users = readJSON(USERS_FILE);
     const userId = parseInt(user_id);
@@ -269,6 +267,20 @@ app.post('/comments', (req, res) => {
 
 // *******************************************************************************
 // Listar Comments
+app.get('/comments', (req, res) => {
+    const comments = readJSON(COMMENTS_FILE);
+    const sanitized = comments.map(c => ({id: c.id, commentContent: c.commentContent, user_id: c.user_id, post_id: c.post_id}));
+
+    const users = readJSON(USERS_FILE);
+    const posts = readJSON(POSTS_FILE);
+    const commentsFull = sanitized.map(comment => {
+        const user = users.find(u => u.id == comment.user_id);
+        const post = posts.find(p => p.id == comment.post_id);
+        return { ...comment, username: user ? user.username : 'Usuário Desconhecido', postTitle: post ? post.title : 'Post Desconhecido' };
+    });
+
+    res.json(commentsFull);
+});
 
 // *******************************************************************************
 // Editar Comment
