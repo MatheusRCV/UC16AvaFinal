@@ -4,32 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./globals.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="./globals.js" type="text/javascript" defer></script>
-    <title>Retro Blogger</title>
+    <title>Retro Blogger - Perfil do Usuário</title>
 </head>
 <body id="body">
-    <main class="main">
-        <h2>Perfil do Usuário</h2>
-        <p>Bem-vindo ao seu perfil! Aqui você pode ver suas informações e gerenciar suas postagens.</p>
-        <section class="user-info">
-            <h3>Informações do Usuário</h3>
-            <p><strong>Usuário:</strong> johndoe</p>
-            <p><strong>Nome Completo:</strong> John Doe</p>
-            <p><strong>Email:</strong> john.doe@example.com</p>
-        </section>
-        <section class="user-posts">
-            <h3>Minhas Postagens</h3>
+    <header class="header">
+        <h1>Retro Blogger</h1>
+        <nav class="nav">
             <ul>
-                <li><a href="/post/1">Minha Primeira Postagem</a></li>
-                <li><a href="/post/2">Dicas para Escrever um Blog de Sucesso</a></li>
-                <li><a href="/post/3">Como Gerenciar seu Tempo como Blogger</a></li>
+                <li><a href="page-home.html">Home</a></li>
+                <li><a href="page-signin.html">Registre-se</a></li>
+                <li><a href="page-login.html">Faça Login</a></li>
             </ul>
-        </section>
-        <section class="user-actions">
-            <h3>Ações do Usuário</h3>
-            <button onclick="window.location.href='/settings'">Configurações da Conta</button>
-            <button onclick="window.location.href='/new-post'">Nova Postagem</button>
-        </section>
-    </main>
+        </nav>
+    </header>
+    <div class="container">
+        <main class="main">
+            <h2>Perfil do Usuário</h2>
+            <p>Bem-vindo ao seu perfil! Aqui você pode ver suas informações e gerenciar suas postagens.</p>
+            <section class="user-profile">
+                <img src="./imgs/profile_circle_icon.webp" alt="Avatar" class="user-avatar">
+                <h3 class="user-name">John Doe</h3>
+                <p class="user-bio">Blogger apaixonado por tecnologia e escrita.</p>
+            </section>
+            <section class="user-info">
+                <h3>Informações do Usuário</h3>
+                <p><strong>Usuário:</strong> johndoe</p>
+                <p><strong>Nome Completo:</strong> John Doe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+            </section>
+            <section class="user-posts">
+                <h3>Minhas Postagens</h3>
+                <ul class="posts-list">
+                    <li><a href="page-post.html">Minha Primeira Postagem</a></li>
+                    <li><a href="page-post.html">Dicas para Escrever um Blog de Sucesso</a></li>
+                    <li><a href="page-post.html">Como Gerenciar seu Tempo como Blogger</a></li>
+                </ul>
+            </section>
+            <section class="user-actions">
+                <h3>Ações do Usuário</h3>
+                <button onclick="window.location.href='page-settings.html'" class="btn">Configurações da Conta</button>
+                <button onclick="window.location.href='page-post.html'" class="btn">Nova Postagem</button>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
