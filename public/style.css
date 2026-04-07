@@ -1,4 +1,57 @@
 /* Estilos para posts */
+.hero-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, #FF8C00 0%, #FFA500 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-nav {
+    margin: 10px 0;
+}
+
+.hero-nav ul {
+    gap: 10px;
+}
+
+.hero-nav a {
+    color: white;
+    background-color: rgba(0,0,0,0.2);
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.hero-nav a:hover {
+    background-color: rgba(0,0,0,0.4);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+.hero-card h2 {
+    font-size: 2.5em;
+    margin: 10px 0 0 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-card p {
+    font-size: 1.2em;
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
 .post {
     margin-bottom: 30px;
     padding: 20px;
@@ -12,6 +65,81 @@
 .post:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Seção introdutória */
+.intro-section {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 30px;
+}
+
+.intro-section h3 {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.feature-card {
+    background-color: #2a2a2a;
+    border-left: 4px solid var(--primary-color);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.feature-card:hover {
+    box-shadow: 0 6px 16px rgba(255,140,0,0.3);
+    background-color: #333333;
+}
+
+.intro-section .feature-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 6px 16px rgba(255,140,0,0.3);
+    background-color: #333333;
+}
+
+.feature-card h4 {
+    font-size: 1.4em;
+    color: var(--accent-color);
+    margin: 0 0 12px 0;
+    font-weight: 600;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: #cccccc;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Card de perfil do usuário */
+.user-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-profile-card .user-avatar {
+    margin-bottom: 0;
+}
+
+/* Card de ações do usuário */
+.user-actions-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-actions-card .btn {
+    margin-top: 0;
 }
 
 .post-title {
@@ -76,6 +204,9 @@
 /* Estilos para formulários */
 .form-group {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-group label {
@@ -88,6 +219,7 @@
 .form-group input,
 .form-group textarea {
     width: 100%;
+    max-width: 400px;
     padding: 12px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
@@ -114,17 +246,20 @@
     padding: 12px 24px;
     background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     color: white;
-    border: none;
+    border: 2px solid #CC6600;
     border-radius: 5px;
     cursor: pointer;
     font-family: var(--font-family-heading);
     font-weight: 600;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
 .btn:hover {
     background: linear-gradient(45deg, #FF7700, #FF9500);
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
 }
 
 /* Estilos para navegação */
@@ -150,11 +285,13 @@
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
 .nav a:hover {
     background-color: #333333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
 }
 
 /* Estilos para perfis de usuário */
@@ -179,13 +316,16 @@
 
 .user-name {
     font-size: 1.5em;
-    color: var(--primary-color);
+    color: var(--accent-color);
+    margin: 0;
+    font-weight: 600;
 }
 
 .user-bio {
+    font-size: 1em;
+    color: #cccccc;
     font-style: italic;
-    color: #6c757d;
-    max-width: 400px;
+    margin: 0;
 }
 
 /* Estilos para lista de posts */
@@ -218,6 +358,37 @@
 }
 
 /* Responsividade */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.main > * {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+.main h2 {
+    margin-bottom: 15px;
+}
+
+.main h3 {
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+.main p {
+    margin-bottom: 15px;
+}
+
+.main section {
+    margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 10px;
