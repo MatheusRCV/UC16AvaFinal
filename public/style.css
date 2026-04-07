@@ -3,7 +3,7 @@
     margin-bottom: 30px;
     padding: 20px;
     border: 1px solid var(--border-color);
-    background-color: white;
+    background-color: #2a2a2a;
     border-radius: 10px;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -22,7 +22,7 @@
 
 .post-meta {
     font-size: 0.9em;
-    color: #6c757d;
+    color: #999999;
     margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
@@ -64,7 +64,7 @@
 
 .comment-date {
     font-size: 0.8em;
-    color: #6c757d;
+    color: #999999;
     grid-column: 2;
 }
 
@@ -93,13 +93,15 @@
     border-radius: 5px;
     font-family: var(--font-family-main);
     transition: border-color 0.3s ease;
+    background-color: #1a1a1a;
+    color: #ffffff;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+    box-shadow: 0 0 5px rgba(255,140,0,0.5);
 }
 
 .form-group textarea {
@@ -121,7 +123,7 @@
 }
 
 .btn:hover {
-    background: linear-gradient(45deg, #0056b3, #1e7e34);
+    background: linear-gradient(45deg, #FF7700, #FF9500);
     transform: scale(1.05);
 }
 
@@ -144,7 +146,7 @@
 }
 
 .nav a {
-    color: var(--primary-color);
+    color: white;
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
@@ -152,7 +154,7 @@
 }
 
 .nav a:hover {
-    background-color: var(--secondary-color);
+    background-color: #333333;
 }
 
 /* Estilos para perfis de usuário */
@@ -172,6 +174,7 @@
     margin-bottom: 10px;
     border: 3px solid var(--primary-color);
     box-shadow: var(--shadow);
+    background-color: white;
 }
 
 .user-name {
@@ -202,7 +205,7 @@
     color: var(--text-color);
     display: block;
     padding: 15px;
-    background-color: white;
+    background-color: #2a2a2a;
     border-radius: 8px;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease;
@@ -211,6 +214,7 @@
 .posts-list a:hover {
     color: var(--link-color);
     transform: translateY(-3px);
+    background-color: #333333;
 }
 
 /* Responsividade */

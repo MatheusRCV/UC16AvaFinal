@@ -7,13 +7,13 @@
 
 /* Variáveis CSS para consistência - Modernizadas */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #f8f9fa;
-    --accent-color: #28a745;
-    --text-color: #212529;
-    --link-color: #007bff;
-    --border-color: #dee2e6;
-    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --primary-color: #FF8C00;
+    --secondary-color: #1a1a1a;
+    --accent-color: #FFA500;
+    --text-color: #ffffff;
+    --link-color: #FFB84D;
+    --border-color: #444444;
+    --shadow: 0 2px 4px rgba(0,0,0,0.3);
     --font-family-main: 'Roboto', sans-serif;
     --font-family-heading: 'Montserrat', sans-serif;
 }
@@ -23,7 +23,7 @@ body {
     font-family: var(--font-family-main);
     line-height: 1.6;
     color: var(--text-color);
-    background: linear-gradient(135deg, var(--secondary-color) 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -58,7 +58,7 @@ p {
     max-width: 1200px;
     width: 100%;
     padding: 20px;
-    background-color: white;
+    background-color: #2a2a2a;
     box-shadow: var(--shadow);
     border-radius: 10px;
     margin: 20px;
@@ -70,7 +70,7 @@ p {
 
 .header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 15px 20px;
     border-bottom: 2px solid var(--primary-color);
     margin-bottom: 20px;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
@@ -81,14 +81,20 @@ p {
 }
 
 .footer {
-    text-align: center;
-    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 20px;
     border-top: 1px solid var(--border-color);
     margin-top: 20px;
     font-size: 0.9em;
-    color: #6c757d;
-    background-color: var(--secondary-color);
+    color: #999999;
+    background-color: #1a1a1a;
     border-radius: 0 0 10px 10px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.footer p {
+    margin: 0;
 }
