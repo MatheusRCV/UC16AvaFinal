@@ -31,6 +31,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    transition: opacity 0.5s ease;
+    opacity: 0;
 }
 
 a {
@@ -78,6 +80,19 @@ p {
     border-radius: 10px 10px 0 0;
     width: 100%;
     box-sizing: border-box;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .nav-bar {
+    margin-top: 10px;
+}
+
+.header .nav {
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .footer {
