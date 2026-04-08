@@ -80,17 +80,21 @@ p {
     border-radius: 10px 10px 0 0;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header h1 {
     margin: 0;
 }
 
-.header .nav-bar {
-    margin-top: 10px;
+.header-centered {
+    display: block !important;
+    text-align: center !important;
 }
 
-.header .nav {
+.header-centered .nav {
     margin-top: 10px;
     margin-bottom: 0;
 }
