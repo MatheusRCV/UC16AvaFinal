@@ -5,5 +5,12 @@
     "username": "admin1234",
     "email": "teste2.mail@senac.edu.br",
     "password": "senha123"
+  },
+  {
+    "id": 3,
+    "name": "Matheus",
+    "username": "DuBariLow",
+    "email": "matheusrcv2018@gmail.com",
+    "password": "teste4"
   }
 ]

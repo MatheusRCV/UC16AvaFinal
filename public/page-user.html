@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./globals.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./globals.js" type="text/javascript" defer></script>
+    <script src="./app.js" type="text/javascript" defer></script>
     <title>Retro Blogger - Perfil do Usuário</title>
 </head>
 <body id="body">
@@ -22,22 +23,16 @@
         <main class="main">
             <article class="feature-card user-profile-card">
                 <img src="./imgs/profile_circle_icon.webp" alt="Avatar" class="user-avatar">
-                <h2 class="user-name">John Doe</h2>
-                <p class="user-bio">Blogger apaixonado por tecnologia e escrita.</p>
+                <h2 id="profile-name">Perfil</h2>
             </article>
             <article class="feature-card">
                 <h3>Informações do Usuário</h3>
-                <p><strong>Usuário:</strong> johndoe</p>
-                <p><strong>Nome Completo:</strong> John Doe</p>
-                <p><strong>Email:</strong> john.doe@example.com</p>
+                <div id="user-info"></div>
             </article>
             <article class="feature-card">
                 <h3>Minhas Postagens</h3>
-                <ul class="posts-list">
-                    <li><a href="page-post.html">Minha Primeira Postagem</a></li>
-                    <li><a href="page-post.html">Dicas para Escrever um Blog de Sucesso</a></li>
-                    <li><a href="page-post.html">Como Gerenciar seu Tempo como Blogger</a></li>
-                </ul>
+                <ul class="posts-list" id="posts-list"></ul>
+                <p id="no-posts-message" style="display:none;">Nenhuma postagem encontrada.</p>
             </article>
             <article class="feature-card user-actions-card">
                 <h3>Ações do Usuário</h3>

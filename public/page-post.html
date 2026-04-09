@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./globals.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./globals.js" type="text/javascript" defer></script>
+    <script src="./app.js" type="text/javascript" defer></script>
     <title>Retro Blogger - Nova Postagem</title>
 </head>
 <body id="body">
@@ -25,11 +26,15 @@
                 <form id="post-form">
                     <div class="form-group">
                         <label for="title">Título:</label>
-                        <input type="text" id="title" name="title" required>
+                        <input type="text" id="title" name="title" placeholder="Ex: Como organizar sua rotina digital" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="theme">Tema:</label>
+                        <input type="text" id="theme" name="theme" placeholder="Ex: Tecnologia, Estilo de Vida, Dicas" required>
                     </div>
                     <div class="form-group">
                         <label for="content">Conteúdo:</label>
-                        <textarea id="content" name="content" required></textarea>
+                        <textarea id="content" name="content" placeholder="Conte a sua história, compartilhe dicas ou escreva uma opinião..." required></textarea>
                     </div>
                     <button type="submit" class="btn">Publicar</button>
                 </form>

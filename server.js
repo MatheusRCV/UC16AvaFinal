@@ -7,6 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'page-home.html'));
+});
 
 const PORT = 3000;
 
@@ -27,6 +30,27 @@ function randomID(data) {
 };
 // *******************************************************************************
 // Users CRUD
+// Login
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Usuário e senha são obrigatórios' });
+    }
+    
+    const users = readJSON(USERS_FILE);
+    const user = users.find(u => u.username === username && u.password === password);
+    
+    if (!user) {
+        return res.status(401).json({ error: 'Usuário ou senha inválidos' });
+    }
+    
+    res.json({ 
+        message: `Bem-vindo, ${user.name}!`,
+        user: { id: user.id, name: user.name, username: user.username, email: user.email }
+    });
+});
+
 // Cadastro
 app.post('/users', (req, res) => {
     const { name, username, email, password } = req.body;
@@ -128,39 +152,28 @@ app.post('/posts', (req, res) => {
         return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
     }
 
-    // Condicionais que evitam valores inválidos nos campos da database.
-    if (title !== undefined && title === "") {
-        return res.status(400).json({ error: "Título não pode ser vazio" });
+    if (typeof title !== 'string' || title.trim() === '') {
+        return res.status(400).json({ error: 'Título não pode ser vazio' });
     }
-    if (theme !== undefined && theme === "") {
-        return res.status(400).json({ error: "Tema não pode ser vazio" });
+    if (typeof theme !== 'string' || theme.trim() === '') {
+        return res.status(400).json({ error: 'Tema não pode ser vazio' });
     }
-    if (content !== undefined && content === "") {
-        return res.status(400).json({ error: "Conteúdo não pode ser vazio" });
+    if (typeof content !== 'string' || content.trim() === '') {
+        return res.status(400).json({ error: 'Conteúdo não pode ser vazio' });
     }
-    
-    // Pesquisa de Title já existente.
-    if (title !== undefined && posts.find(p => p.title === title && p.id != id)) {
-        return res.status(400).json({ error: 'O título já está em uso.' });
-    }
-    
-    // Condicionais que evitam que Undefined seja armazenado em Updates.
-    if (title !== undefined) updates.title = title;
-    if (theme !== undefined) updates.theme = theme;
-    if (content !== undefined) updates.content = content;
 
     const users = readJSON(USERS_FILE);
-    const userId = parseInt(user_id);
-    if (!users.some(u => u.id == userId)) {
+    const userId = parseInt(user_id, 10);
+    if (!users.some(u => u.id === userId)) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
     }
 
     const posts = readJSON(POSTS_FILE);
-    const newPost = { id: randomID(posts), title, theme, content, user_id: userId };
+    const newPost = { id: randomID(posts), title: title.trim(), theme: theme.trim(), content: content.trim(), user_id: userId };
 
     posts.push(newPost);
     writeJSON(POSTS_FILE, posts);
-    res.status(201).json({message: `Seu post foi criado com sucesso!`, post: { id: newPost.id, title, theme, content, user_id: userId }});
+    res.status(201).json({message: `Seu post foi criado com sucesso!`, post: newPost});
 });
 
 // *******************************************************************************

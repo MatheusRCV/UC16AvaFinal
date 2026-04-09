@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": 1,
+    "commentContent": "Testando os comentários!",
+    "user_id": 3,
+    "post_id": 1
+  }
+]

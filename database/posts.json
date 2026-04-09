@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Teste",
+    "theme": "Geral",
+    "content": "Estou testando meu mini-blog!",
+    "user_id": 3
+  }
+]
