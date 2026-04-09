@@ -1,0 +1,91 @@
+# 📝 Retro Blogger
+
+O **Retro Blogger** é uma aplicação web fullstack desenvolvida como projeto acadêmico, com o objetivo de simular o funcionamento de um blog completo, incluindo autenticação de usuários, criação de postagens e sistema de comentários.
+
+O projeto foi construído utilizando **JavaScript no frontend e backend**, com uma arquitetura simples baseada em arquivos JSON como banco de dados.
+
+---
+
+## 🚀 Funcionalidades
+
+* 👤 Cadastro e login de usuários
+* 📝 Criação de posts
+* 📖 Listagem de posts (feed)
+* 💬 Sistema de comentários
+* ✏️ Atualização de dados de usuário
+* 🗑️ Remoção de usuários e posts
+* 🔗 Relacionamento entre usuários, posts e comentários
+
+---
+
+## 🧠 Arquitetura
+
+A aplicação segue um modelo cliente-servidor:
+
+* **Frontend:** responsável pela interface e interação com o usuário
+* **Backend:** responsável pelas regras de negócio e manipulação dos dados
+* **Banco de dados:** simulado com arquivos JSON
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### 🔹 Frontend
+
+* HTML5
+* CSS3 (Flexbox e Grid)
+* JavaScript (DOM, eventos e Fetch API)
+
+### 🔹 Backend
+
+* Node.js
+* Express.js
+
+### 🔹 Armazenamento
+
+* Arquivos JSON (simulando banco de dados)
+
+---
+
+## 🔄 Comunicação
+
+A comunicação entre frontend e backend é feita através de requisições HTTP utilizando a **Fetch API**, com troca de dados no formato JSON.
+
+---
+
+## 🔐 Autenticação
+
+O sistema utiliza uma abordagem simples de autenticação baseada em:
+
+* Armazenamento de dados do usuário no `localStorage`
+* Uso do `user_id` para associar ações como criação de posts e comentários
+
+---
+
+## ⚠️ Observações
+
+Este projeto possui fins educacionais e foi desenvolvido para demonstrar conceitos fundamentais de:
+
+* CRUD (Create, Read, Update, Delete)
+* Integração frontend-backend
+* Manipulação de dados
+* Estruturação de aplicações web
+
+Algumas melhorias que poderiam ser implementadas em um ambiente real:
+
+* Uso de banco de dados relacional ou NoSQL
+* Autenticação segura com tokens (JWT)
+* Criptografia de senhas (hash)
+* Proteção contra XSS e validação mais robusta
+
+---
+
+## 📌 Objetivo
+
+O principal objetivo do projeto é consolidar conhecimentos em desenvolvimento web, simulando um sistema real de blog com funcionalidades completas e integração entre diferentes camadas da aplicação.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Matheus Valpassos como projeto acadêmico.
